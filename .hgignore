@@ -19,7 +19,7 @@ stacktrace.log
 */reports/
 *.orig
 *.zip
-
+*/docs
 .DS_Store
 */.DS_Store
 */web-app/WEB-INF/classes
