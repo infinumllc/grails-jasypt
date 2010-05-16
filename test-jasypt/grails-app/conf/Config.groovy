@@ -56,17 +56,17 @@ environments {
 
 }
 // if using this form, you'll need to define the named encryptor in resources.groovy
-//jayspt {
+//jasypt {
 //    encryptorRegisteredName = "fooBar"
 //}
 
-//jayspt {
+//jasypt {
 //    algorithm = "PBEWithMD5AndTripleDES"
 //    password = "s3kr1t"
 //    keyObtentionIterations = 1000
 //}
 
-jayspt {
+jasypt {
     algorithm = "PBEWITHSHA256AND128BITAES-CBC-BC"
     providerName = "BC"
     password = "s3kr1t"

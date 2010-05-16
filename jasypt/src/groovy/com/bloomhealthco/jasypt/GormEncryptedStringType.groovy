@@ -1,4 +1,4 @@
-package com.bloomhealthco.jayspt
+package com.bloomhealthco.jasypt
 
 import org.jasypt.hibernate.type.AbstractEncryptedAsStringType
 import org.jasypt.hibernate.type.ParameterNaming
@@ -38,7 +38,7 @@ class GormEncryptedStringType extends AbstractEncryptedAsStringType {
      * @return a default config that expects an encryptor name of gormEncryptor
      */
     def getConfig() {
-        def config = [:] + jaysptConfig
+        def config = [:] + jasyptConfig
         if (
             !config[ParameterNaming.ALGORITHM] &&
             !config[ParameterNaming.PASSWORD] &&
@@ -56,14 +56,14 @@ class GormEncryptedStringType extends AbstractEncryptedAsStringType {
      * Config.groovy pulls in).  This stanza can either override the default encryptor name and
      * set a new encryptorRegisteredName that you define in your Spring resources.groovy file, ex:
      *
-     * jayspt {
+     * jasypt {
      *     encryptorRegisteredName = "fooBar"
      * }
      *
      * otherwise, you can actually configure the encryptor right there using the other properties
      * available in org.jasypt.hibernate.type.ParameterNaming, ex with triple-DES:
      *
-     * jayspt {
+     * jasypt {
      *     algorithm = "PBEWithMD5AndTripleDES"
      *     password = "s3kr1t"
      *     keyObtentionIterations = 1000
@@ -71,17 +71,17 @@ class GormEncryptedStringType extends AbstractEncryptedAsStringType {
      *
      * or Bouncy Castle AES:
      * 
-     * jayspt {
+     * jasypt {
      *     algorithm = "PBEWITHSHA256AND128BITAES-CBC-BC"
      *     providerName = "BC"
      *     password = "s3kr1t"
      *     keyObtentionIterations = 1000
      * }
      *
-     * @return the jayspt config specified in Config.groovy
+     * @return the jasypt config specified in Config.groovy
      */
-    def getJaysptConfig() {
-        return ConfigurationHolder.config?.jayspt ?: [:] 
+    def getJasyptConfig() {
+        return ConfigurationHolder.config?.jasypt ?: [:] 
     }
 
     protected Object convertToObject(String stringValue) { stringValue }

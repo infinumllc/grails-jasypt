@@ -1,6 +1,6 @@
 package com.bloomhealthco.domain
 
-import com.bloomhealthco.jayspt.GormEncryptedStringType
+import com.bloomhealthco.jasypt.GormEncryptedStringType
 
 class Patient {
 	String firstName
