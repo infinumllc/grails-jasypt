@@ -8,6 +8,7 @@ Grails integration with Jasypt, allows easy encryption of information, including
   <documentation>http://grails.org/plugin/jasypt</documentation>
   <resources>
     <resource>BuildConfig</resource>
+    <resource>UrlMappings</resource>
     <resource>spring.resources</resource>
   </resources>
   <dependencies>
