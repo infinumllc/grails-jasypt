@@ -1,11 +1,23 @@
+import java.security.Security
+import org.bouncycastle.jce.provider.BouncyCastleProvider
+
 class JasyptEncryptionGrailsPlugin {
-    // the plugin version
+
+    static {
+        // adds the BouncyCastle provider to Java so we don't need to manually modify our java install
+        // be sure that you've installed the Java Cryptography Extension (JCE) on the Sun website
+        // so that you have "unlimited" (rather than "strong", which isn't really strong) encryption
+        // if you're on OSX, this should be there by default.  On other platforms, you'll need to
+        // update the jars in your $JAVA_HOME/lib/security with the updated JCE jars
+        Security.addProvider(new BouncyCastleProvider());
+    }
+
     def version = "0.1.1"
-    // the version or versions of Grails the plugin is designed for
+
     def grailsVersion = "1.3.2 > *"
-    // the other plugins this plugin depends on
+
     def dependsOn = [:]
-    // resources that are excluded from plugin packaging
+
     def pluginExcludes = [
             "grails-app/views/error.gsp"
     ]

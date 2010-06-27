@@ -30,4 +30,4 @@ grails.project.dependency.resolution = {
 
 }
 
-grails.plugin.location.jasypt = "../jasypt"
+grails.plugin.location.jasypt = "../jasypt-encryption"

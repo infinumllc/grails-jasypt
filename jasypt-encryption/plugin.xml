@@ -1,4 +1,4 @@
-<plugin name='jasypt-encryption' version='0.1' grailsVersion='1.3.2 &gt; *'>
+<plugin name='jasypt-encryption' version='0.1.1' grailsVersion='1.3.2 &gt; *'>
   <author>Ted Naleid</author>
   <authorEmail>contact@naleid.com</authorEmail>
   <title>Plugin summary/headline</title>
