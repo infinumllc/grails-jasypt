@@ -1,11 +1,11 @@
 <plugin name='jasypt-encryption' version='0.1.1' grailsVersion='1.2.1 &gt; *'>
   <author>Ted Naleid</author>
   <authorEmail>tnaleid@bloomhealthco.com</authorEmail>
-  <title>Grails Jasypt Plugin - easy encryption</title>
+  <title>Grails Jasypt Encryption Plugin - easy encryption</title>
   <description>\
 Grails integration with Jasypt, allows easy encryption of information, including Hibernate/GORM integration.
 </description>
-  <documentation>http://grails.org/plugin/jasypt</documentation>
+  <documentation>http://grails.org/plugin/jasypt-encryption</documentation>
   <resources>
     <resource>BuildConfig</resource>
     <resource>UrlMappings</resource>
