@@ -31,6 +31,8 @@ Grails integration with Jasypt, allows easy encryption of information, including
 
     def documentation = "http://grails.org/plugin/jasypt-encryption"
 
+    def issueManagement = [ system: 'bitbucket', url: 'https://bitbucket.org/tednaleid/grails-jasypt/issues' ]
+
     def doWithWebDescriptor = { xml ->
 
     }
