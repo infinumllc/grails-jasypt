@@ -24,11 +24,8 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
     dependencies {
-        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-
-        // runtime 'mysql:mysql-connector-java:5.1.5'
         runtime 'org.jasypt:jasypt:1.9.0'
         runtime 'org.jasypt:jasypt-hibernate3:1.9.0'
-        //runtime 'org.bouncycastle:bcprov-jdk16-146'
+        runtime 'org.bouncycastle:bcprov-jdk16:1.46'
     }
 }
