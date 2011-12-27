@@ -29,7 +29,6 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime ':jasypt-encryption:0.1.3'
     }
 
 }

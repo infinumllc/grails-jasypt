@@ -1,5 +1,5 @@
 class JasyptEncryptionGrailsPlugin {
-    def version = "0.1.2"
+    def version = "1.0.0"
 
     def grailsVersion = "2.0.0 > *"
 
@@ -15,6 +15,11 @@ class JasyptEncryptionGrailsPlugin {
     def description = '''\\
 Grails integration with Jasypt, allows easy encryption of information, including Hibernate/GORM integration.
 '''
+
+    def developers = [
+            [ name: "Ted Naleid" ],
+            [ name: "Jon Palmer" ]
+    ]
 
     def documentation = "http://grails.org/plugin/jasypt-encryption"
 
