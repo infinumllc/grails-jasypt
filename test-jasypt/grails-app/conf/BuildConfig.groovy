@@ -28,6 +28,10 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.5'
     }
 
+    plugins {
+        runtime ':jasypt-encryption:0.1.3'
+    }
+
 }
 
 grails.plugin.location.jasypt = "../jasypt-encryption"
