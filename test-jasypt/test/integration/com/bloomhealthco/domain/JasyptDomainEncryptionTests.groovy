@@ -17,16 +17,20 @@ class JasyptDomainEncryptionTests extends GrailsUnitTestCase {
     }
 
     void testTwoWayStringEncryption() {
-		def originalPatient = new Patient(firstName: "foo", lastName: "bar", correlationId: CORRELATION_ID)
+        def birthDate =  new Date(1970, 2, 3)
+		def originalPatient = new Patient(firstName: "foo", lastName: "bar", birthDate: birthDate, correlationId: CORRELATION_ID)
 		originalPatient.save(failOnError: "true")
 		
         withPatientForCorrelationId(CORRELATION_ID) { patient, rawPatient ->
             assertEquals "foo", patient.firstName
             assertEquals "bar", patient.lastName
+            assertEquals birthDate, patient.birthDate
             assertTrue "foo" != rawPatient.FIRST_NAME
             assertTrue "bar" != rawPatient.LAST_NAME
+            assertTrue birthDate.toString() != rawPatient.BIRTH_DATE
             assertTrue rawPatient.FIRST_NAME.endsWith("=")
             assertTrue rawPatient.LAST_NAME.endsWith("=")
+            assertTrue rawPatient.BIRTH_DATE.endsWith("=")
         }
     }
 
