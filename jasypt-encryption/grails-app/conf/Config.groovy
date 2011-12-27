@@ -22,3 +22,7 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+
+grails.release.scm.enabled=false
+

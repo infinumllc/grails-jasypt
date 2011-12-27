@@ -28,4 +28,11 @@ grails.project.dependency.resolution = {
         runtime 'org.jasypt:jasypt-hibernate3:1.9.0'
         runtime 'org.bouncycastle:bcprov-jdk16:1.46'
     }
+
+    plugins {
+        // need to have svn as release keeps installing it
+        build(":release:1.0.0", ":svn:1.0.1") {
+            export = false
+        }
+    }
 }
