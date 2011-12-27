@@ -7,6 +7,10 @@ class Patient {
 	String lastName
     String correlationId
 
+    static constraints = {
+        firstName maxSize: 384
+    }
+
 	static mapping = {
     	firstName type: GormEncryptedStringType
         lastName type: GormEncryptedStringType
