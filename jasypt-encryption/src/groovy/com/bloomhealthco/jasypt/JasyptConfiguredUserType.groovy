@@ -1,23 +1,12 @@
 package com.bloomhealthco.jasypt
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
-import org.jasypt.hibernate.type.AbstractEncryptedAsStringType
-import org.jasypt.hibernate.type.ParameterNaming
-import org.jasypt.encryption.pbe.PBEStringEncryptor
+import org.hibernate.usertype.ParameterizedType
+import org.hibernate.usertype.UserType
+import org.jasypt.hibernate3.type.ParameterNaming
 
-public abstract class AbstractGormEncryptedStringType extends AbstractEncryptedAsStringType {
-
-    PBEStringEncryptor retrieveEncryptor() {
-        setParameterValues(null)
-        checkInitialization()
-        return encryptor    
-    }
-
-    void setParameterValues(Properties parameters) {
-        def params = config + (parameters ?: [:]) as Properties
-        super.setParameterValues(params)
-    }
-
+class JasyptConfiguredUserType<T extends UserType & ParameterizedType> extends DefaultParametersUserType<T> {
+    
     /**
      *  you can define an encryptor in your grails-app/conf/spring/resources.groovy file that
      *  contains an encryptor with a default name of 'gormEncryptor'
@@ -45,18 +34,18 @@ public abstract class AbstractGormEncryptedStringType extends AbstractEncryptedA
      *
      * @return a default config that expects an encryptor name of gormEncryptor
      */
-    def getConfig() {
-        def config = [:] + jasyptConfig
+    Map getDefaultParameters() {
+        def defaultParameters = [:] + jasyptConfig
         if (
-            !config[ParameterNaming.ALGORITHM] &&
-            !config[ParameterNaming.PASSWORD] &&
-            !config[ParameterNaming.KEY_OBTENTION_ITERATIONS] &&
-            !config[ParameterNaming.ENCRYPTOR_NAME]
+                !defaultParameters[ParameterNaming.ALGORITHM] &&
+                        !defaultParameters[ParameterNaming.PASSWORD] &&
+                        !defaultParameters[ParameterNaming.KEY_OBTENTION_ITERATIONS] &&
+                        !defaultParameters[ParameterNaming.ENCRYPTOR_NAME]
         ) {
-           config[ParameterNaming.ENCRYPTOR_NAME] = 'gormEncryptor'
+            defaultParameters[ParameterNaming.ENCRYPTOR_NAME] = 'gormEncryptor'
         }
 
-        return config
+        return defaultParameters
     }
 
     /**

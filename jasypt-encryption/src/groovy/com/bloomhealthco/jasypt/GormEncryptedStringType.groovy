@@ -1,8 +1,5 @@
 package com.bloomhealthco.jasypt
 
-public class GormEncryptedStringType extends AbstractGormEncryptedStringType {
-    
-    protected Object convertToObject(String stringValue) { stringValue }
+public class GormEncryptedStringType extends JasyptConfiguredUserType<org.jasypt.hibernate3.type.EncryptedStringType> {
 
-    Class returnedClass() { String }
 }
