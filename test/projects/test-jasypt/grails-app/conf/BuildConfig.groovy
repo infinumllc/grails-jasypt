@@ -44,4 +44,4 @@ grails.project.dependency.resolution = {
 
 }
 
-grails.plugin.location.jasypt = "../../../../grails-jasypt"
+grails.plugin.location.jasypt = "../../../"
