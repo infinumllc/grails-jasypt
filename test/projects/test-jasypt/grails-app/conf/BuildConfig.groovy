@@ -1,6 +1,7 @@
-grails.project.class.dir = "target/classes"
-grails.project.test.class.dir = "target/test-classes"
-grails.project.test.reports.dir	= "target/test-reports"
+grails.project.work.dir = "target"
+//grails.project.class.dir = "target/classes"
+//grails.project.test.class.dir = "target/test-classes"
+//grails.project.test.reports.dir	= "target/test-reports"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -15,8 +16,8 @@ grails.project.dependency.resolution = {
 
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
-        //mavenLocal()
-        //mavenCentral()
+        mavenLocal()
+        mavenCentral()
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -29,8 +30,18 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
+        runtime ":hibernate:$grailsVersion"
+        runtime ":jquery:1.8.3"
+        runtime ":resources:1.2"
+
+        // Uncomment these (or add new ones) to enable additional resources capabilities
+        //runtime ":zipped-resources:1.0"
+        //runtime ":cached-resources:1.0"
+        //runtime ":yui-minify-resources:0.1.5"
+
+        build ":tomcat:$grailsVersion"
     }
 
 }
 
-grails.plugin.location.jasypt = "../jasypt-encryption"
+grails.plugin.location.jasypt = "../../../../grails-jasypt"

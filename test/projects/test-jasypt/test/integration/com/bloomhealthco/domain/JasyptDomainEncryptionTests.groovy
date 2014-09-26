@@ -1,23 +1,17 @@
 package com.bloomhealthco.domain
 
-import grails.test.GrailsUnitTestCase
 import groovy.sql.Sql
 
-class JasyptDomainEncryptionTests extends GrailsUnitTestCase {
+import org.junit.Test
+
+class JasyptDomainEncryptionTests {
     def dataSource
     def sessionFactory
     def grailsApplication
 
     def CORRELATION_ID = "ABC123"
 
-    protected void setUp() {
-        super.setUp()
-    }
-
-    protected void tearDown() {
-        super.tearDown()
-    }
-
+	@Test
     void testStringStringEncryption() {
         testPropertyAsStringEncryption('firstName', 'FIRST_NAME', 'foo')
     }
@@ -56,14 +50,14 @@ class JasyptDomainEncryptionTests extends GrailsUnitTestCase {
 
     void testSaltingEncryptsSameValueDifferentlyEachTime() {
         def originalPatient = new Patient(firstName: "foo", lastName: "foo", correlationId: CORRELATION_ID)
-		originalPatient.save(failOnError: "true")
+		originalPatient.save(failOnError: true)
 
         withPatientForCorrelationId(CORRELATION_ID) { patient, rawPatient ->
-            assertEquals "foo", patient.firstName
-            assertEquals "foo", patient.lastName
-            assertTrue "foo" != rawPatient.FIRST_NAME
-            assertTrue "foo" != rawPatient.LAST_NAME
-            assertTrue rawPatient.FIRST_NAME != rawPatient.LAST_NAME
+            assert "foo" == patient.firstName
+            assert "foo" == patient.lastName
+            assert "foo" != rawPatient.FIRST_NAME
+            assert "foo" != rawPatient.LAST_NAME
+            assert rawPatient.FIRST_NAME != rawPatient.LAST_NAME
         }
     }
 
@@ -74,11 +68,11 @@ class JasyptDomainEncryptionTests extends GrailsUnitTestCase {
             def firstName = LONG_NAME_256.substring(0, val)
             Patient.build(firstName: firstName, correlationId: val)
             
-            withPatientForCorrelationId(val) { patient, rawPatient ->
-                assertNotNull patient
-                assertEquals firstName, patient.firstName
+            withPatientForCorrelationId(val.toString()) { patient, rawPatient ->
+                assert patient
+                assert firstName == patient.firstName
                 // Bouncy Castle AES block encryption encrypts 256 character string in 384 characters
-                assertTrue rawPatient.FIRST_NAME.size() <= 384
+                assert rawPatient.FIRST_NAME.size() <= 384
             }
         }
     }
@@ -86,21 +80,21 @@ class JasyptDomainEncryptionTests extends GrailsUnitTestCase {
     void testPropertyAsStringEncryption(property, rawProperty, value) {
         def originalPatient = new Patient(correlationId: CORRELATION_ID)
         originalPatient."$property" = value
-        originalPatient.save(failOnError: "true")
+        originalPatient.save([failOnError: true])
 
         withPatientForCorrelationId(CORRELATION_ID) { patient, rawPatient ->
-            assertEquals value, patient."$property"
+            assert value == patient."$property"
             def rawPropertyValue = rawPatient."$rawProperty"
-            assertTrue value.toString() != rawPropertyValue
-            assertTrue rawPropertyValue.endsWith("=")
+            assert value.toString() != rawPropertyValue
+            assert rawPropertyValue.endsWith("=")
         }
     }
 
     def withPatientForCorrelationId(correlationId, closure) {
         def patient = Patient.findByCorrelationId(correlationId)
-        assertNotNull patient
+        assert patient
         retrieveRawPatientFromDatabase(correlationId) { rawPatient ->
-            assertNotNull rawPatient
+            assert rawPatient
             closure(patient, rawPatient)
         }
     }
@@ -108,7 +102,7 @@ class JasyptDomainEncryptionTests extends GrailsUnitTestCase {
     def retrieveRawPatientFromDatabase(correlationId, closure) {
         new Sql(dataSource).with { db ->
             try {
-                def result = db.firstRow("SELECT * FROM patient where correlation_id = $correlationId")
+                def result = db.firstRow("SELECT * FROM patient where correlation_id = ?", correlationId)
                 closure(result)
             } finally {
                 db.close()

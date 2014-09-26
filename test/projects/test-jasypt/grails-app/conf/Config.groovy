@@ -88,6 +88,8 @@ log4j = {
            'net.sf.ehcache.hibernate'
 
     warn   'org.mortbay.log'
+	
+	debug  'com.bloomhealthco'
 }
 
 
