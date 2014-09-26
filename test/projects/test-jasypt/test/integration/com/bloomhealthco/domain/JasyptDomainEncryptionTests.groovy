@@ -66,7 +66,7 @@ class JasyptDomainEncryptionTests {
 
         (1..256).each { val ->
             def firstName = LONG_NAME_256.substring(0, val)
-            Patient.build(firstName: firstName, correlationId: val)
+            new Patient(firstName: firstName, correlationId: val).save(failOnError:true)
             
             withPatientForCorrelationId(val.toString()) { patient, rawPatient ->
                 assert patient
