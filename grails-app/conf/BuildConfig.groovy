@@ -43,7 +43,7 @@ grails.project.dependency.resolution = {
             export = false
         }
         
-		provided(":codenarc:0.22"){
+		build(":codenarc:0.22"){
             exclude "junit"
         }
     }
