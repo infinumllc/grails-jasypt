@@ -1,4 +1,4 @@
 package com.bloomhealthco.jasypt
 
-class GormEncryptedShortAsStringType extends JasyptConfiguredUserType<org.jasypt.hibernate3.type.EncryptedShortAsStringType> {
+class GormEncryptedShortAsStringType extends JasyptConfiguredUserType<org.jasypt.hibernate4.type.EncryptedShortAsStringType> {
 }

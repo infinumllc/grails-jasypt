@@ -4,3 +4,5 @@ target-eclipse
 .settings
 .project
 plugin.xml
+*.zip
+*.zip.sha1

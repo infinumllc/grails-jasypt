@@ -2,6 +2,8 @@ package com.bloomhealthco.jasypt
 
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+
+import org.hibernate.engine.spi.SessionImplementor
 import org.hibernate.usertype.ParameterizedType
 import org.hibernate.usertype.UserType
 
@@ -39,13 +41,21 @@ abstract class DefaultParametersUserType<T extends UserType & ParameterizedType>
         innerType.hashCode(x)
     }
 
-    Object nullSafeGet(final ResultSet resultSet, final String[] names, final Object owner) {
+    /*Object nullSafeGet(final ResultSet resultSet, final String[] names, final Object owner) {
         innerType.nullSafeGet(resultSet, names, owner)
-    }
+    }*/
 
-    void nullSafeSet(final PreparedStatement preparedStatement, Object value, int index) {
+	Object nullSafeGet(ResultSet resultSet, String[] names, SessionImplementor sessionImplementor, Object object){
+		innerType.nullSafeGet(resultSet, names, sessionImplementor, object)
+	}
+
+    /*void nullSafeSet(final PreparedStatement preparedStatement, Object value, int index) {
         innerType.nullSafeSet(preparedStatement, value, index)
-    }
+    }*/
+
+	void nullSafeSet(PreparedStatement preparedStatement, Object value, int index, SessionImplementor sessionImplementer){
+		innerType.nullSafeSet(preparedStatement, value, index, sessionImplementer)
+	}
 
     Object deepCopy(final Object value) {
         innerType.deepCopy(value)
@@ -73,4 +83,5 @@ abstract class DefaultParametersUserType<T extends UserType & ParameterizedType>
     }
 
     abstract Map getDefaultParameters()
+	
 }

@@ -11,7 +11,7 @@ class JasyptEncryptionGrailsPlugin {
         Security.addProvider(new BouncyCastleProvider())
     }
 
-    def version = "1.2.0"
+    def version = "1.3.0"
 
     def grailsVersion = "2.3.0 > *"
 

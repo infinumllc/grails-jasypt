@@ -30,7 +30,7 @@ grails.project.dependency.resolution = {
     dependencies {
         compile 'org.jasypt:jasypt:1.9.2',
                 'org.jasypt:jasypt-spring31:1.9.2',
-                'org.jasypt:jasypt-hibernate3:1.9.2',
+                'org.jasypt:jasypt-hibernate4:1.9.2',
                 'org.bouncycastle:bcprov-jdk15on:1.51'  // the bcprov-jdk15on package should work for jdk versions 1.5 and up
     }
 
@@ -39,7 +39,7 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-        runtime(":hibernate:3.6.10.16"){ // or ":hibernate4:4.3.5.4"
+        runtime(":hibernate4:4.3.5.4"){ // or ":hibernate:3.6.10.16"
             export = false
         }
         

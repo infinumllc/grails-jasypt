@@ -3,7 +3,7 @@ package com.bloomhealthco.jasypt
 import grails.util.Holders
 import org.hibernate.usertype.ParameterizedType
 import org.hibernate.usertype.UserType
-import org.jasypt.hibernate3.type.ParameterNaming
+import org.jasypt.hibernate4.type.ParameterNaming
 
 class JasyptConfiguredUserType<T extends UserType & ParameterizedType> extends DefaultParametersUserType<T> {
     

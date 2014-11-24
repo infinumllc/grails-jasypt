@@ -1,4 +1,4 @@
 package com.bloomhealthco.jasypt
 
-class GormEncryptedFloatAsStringType extends JasyptConfiguredUserType<org.jasypt.hibernate3.type.EncryptedFloatAsStringType> {
+class GormEncryptedFloatAsStringType extends JasyptConfiguredUserType<org.jasypt.hibernate4.type.EncryptedFloatAsStringType> {
 }
